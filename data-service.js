@@ -1,8 +1,8 @@
 var path = require('path');
 var fs = require('fs');
 
-var employees = [];
-var departments = [];
+var emp = [];
+var depart = [];
 
 module.exports.initialize = (() =>{
   return new Promise((resolve, reject) => {
@@ -11,14 +11,14 @@ module.exports.initialize = (() =>{
             reject("unable to read file");
         }
         else {
-            employees = JSON.parse(data);``
+            emp = JSON.parse(data);``
 
             fs.readFile(path.join(__dirname, "./data/departments.json"), "utf8", (err, data) => {
                 if (err) {
                     reject("unable to read file");
                 }
                 else {
-                    departments = JSON.parse(data);
+                    depart = JSON.parse(data);
 
                     resolve();
                 }                    
@@ -30,8 +30,8 @@ module.exports.initialize = (() =>{
 
 module.exports.getAllEmployees = (() => {
   return new Promise((resolve, reject) => {
-    if (employees.length != 0) {
-      resolve(employees)
+    if (emp.length != 0) {
+      resolve(emp)
     }
     else{
       reject("no results returned")
@@ -43,9 +43,9 @@ module.exports.getManagers = (() => {
   return new Promise((resolve, reject) => {
       let Managers = [];
 
-      employees.forEach((employees) => {
-          if (employees.isManager == true){
-             Managers.push(employees);
+      emp.forEach((emp) => {
+          if (emp.isManager == true){
+             Managers.push(emp);
           }
       });
       if (Managers.length != 0) {
@@ -60,8 +60,8 @@ module.exports.getManagers = (() => {
 
 module.exports.getDepartments = (() => {
   return new Promise((resolve, reject) => {
-    if (departments.length != 0) {
-      resolve(departments)
+    if (depart.length != 0) {
+      resolve(depart)
     }
     else{
       reject("no results returned")

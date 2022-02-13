@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var path = require('path');
-var data = require(path.join(__dirname, "./data-service.js"));
+var dataservice = require(path.join(__dirname, "./data-service.js"));
 
 var HTTP_PORT = process.env.PORT || 8080;
 
@@ -25,7 +25,7 @@ app.get("/about", function(req,res){
 
 
 app.get("/employees", function(req,res){
-  data.getAllEmployees()
+  dataservice.getAllEmployees()
     .then((employees) => {
       res.json(employees);
   }).catch((err) => {
@@ -34,7 +34,7 @@ app.get("/employees", function(req,res){
   });
 
   app.get("/managers", function(req,res){
-    data.getManagers()
+    dataservice.getManagers()
     .then((Managers) => {
       res.json(Managers);
   }).catch((err) => {
@@ -44,7 +44,7 @@ app.get("/employees", function(req,res){
 
   
   app.get("/departments", function(req,res){
-    data.getDepartments()
+    dataservice.getDepartments()
     .then((departments) => {
       res.json(departments)
   }).catch((err) => {
@@ -56,7 +56,7 @@ app.get("/employees", function(req,res){
     res.status(404).sendFile(path.join(__dirname,"/views/404page.html"));
   });
 
-  data.initialize()
+  dataservice.initialize()
   .then(() => {
     app.listen(HTTP_PORT, onHttpStart);
   })
