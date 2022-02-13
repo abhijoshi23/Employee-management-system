@@ -1,3 +1,14 @@
+/*********************************************************************************
+* WEB322 – Assignment 02
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part 
+* of this assignment has been copied manually or electronically from any other source 
+* (including 3rd party web sites) or distributed to other students.
+* 
+* Name: _Abhi Vishalkumar Joshi_________ Student ID: _146463203______ Date: _13/2/2022___________
+*
+* Online (Heroku) Link: ___https://web322-app-abhi.herokuapp.com/_____________________________________________________
+*
+********************************************************************************/ 
 var express = require("express");
 var app = express();
 var path = require('path');
