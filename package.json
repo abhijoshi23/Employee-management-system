@@ -7,9 +7,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhijoshi23/web322-app3.git"
+  },
   "author": "Abhi Joshi",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhijoshi23/web322-app3/issues"
+  },
+  "homepage": "https://github.com/abhijoshi23/web322-app3#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.3",
+    "multer": "^1.4.4"
   }
 }
