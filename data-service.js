@@ -127,8 +127,8 @@ exports.getEmployeeByNum = (value) => {
 
 exports.updateEmployee = (employeeData) => {
   return new Promise ((resolve,reject) => {
-      emp.forEach((hahaha) => {
-          if (hahaha.employeeNum == employeeData.employeeNum) {
+      emp.forEach((aj) => {
+          if (aj.employeeNum == employeeData.employeeNum) {
               emp.splice(employeeData.employeeNum-1, 1, employeeData);
               resolve();
           }
