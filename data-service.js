@@ -70,7 +70,7 @@ module.exports.getDepartments = (() => {
 });
 
 
-exports.addEmployee = (employeeData) => {
+module.exports.addEmployee = (employeeData) => {
   employeeData.isManager==undefined ? employeeData.isManager = false : employeeData.isManager = true;
   employeeData.employeeNum = emp.length + 1;
   emp.push(employeeData);
@@ -84,17 +84,18 @@ exports.addEmployee = (employeeData) => {
 })
 };
 
-exports.getEmployeeByStatus = (status) => {
+module.exports.getEmployeeByStatus = (status) => {
   return new Promise((resolve,reject) => {
       var employee_status = emp.filter(emp => emp.status == status);
       if (employee_status.length != 0) {
+        console.log("emplyoeeByStatus");
         resolve(employee_status);
       }
       reject('no results');    
   })
 };
 
-exports.getEmployeesByDepartment = (department) => {
+module.exports.getEmployeesByDepartment = (department) => {
   return new Promise ((resolve,reject) => {
       var employee_department = emp.filter(emp => emp.department == department);        
       if (employee_department.length != 0) {
@@ -104,7 +105,7 @@ exports.getEmployeesByDepartment = (department) => {
   })
 };
 
-exports.getEmployeesByManager = (manager) => {
+module.exports.getEmployeesByManager = (manager) => {
   return new Promise ((resolve,reject) => {
       var employee_manager = emp.filter(emp => emp.employeeManagerNum == manager);
       if (employee_manager.length != 0) {
@@ -114,7 +115,7 @@ exports.getEmployeesByManager = (manager) => {
   })
 };
 
-exports.getEmployeeByNum = (value) => {
+module.exports.getEmployeeByNum = (value) => {
   return new Promise((resolve,reject) => {
       var employee_num = emp.filter(emp => emp.employeeNum == value);
       if (employee_num.length != 0) {
@@ -125,7 +126,7 @@ exports.getEmployeeByNum = (value) => {
 }
   
 
-exports.updateEmployee = (employeeData) => {
+module.exports.updateEmployee = (employeeData) => {
   return new Promise ((resolve,reject) => {
       emp.forEach((aj) => {
           if (aj.employeeNum == employeeData.employeeNum) {

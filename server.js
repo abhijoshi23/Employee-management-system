@@ -16,7 +16,7 @@ var exphbs = require("express-handlebars")
 var multer = require("multer")
 var fs = require('fs');
 var path = require('path');
-var dataservice = require(path.join(__dirname, "./data-service.js"));
+let dataservice = require( "./data-service.js");
 
 var HTTP_PORT = process.env.PORT || 8080;
 
@@ -96,7 +96,7 @@ app.post("/images/add", upload.single("imageFile"), (req, res) => {
 
 app.get("/images", function(req,res){
   fs.readdir("./public/images/uploaded", function(err,data) {
-    res.render("images",  { data: data, title: "Images" });
+    res.render("images", { data: data});
 })
 });
 
@@ -121,8 +121,9 @@ app.get("/images", function(req,res){
 
   // Employees 
   app.get("/employees", (req, res) => {
+    comnsole.log("req.query.status")
     if (req.query.status) {
-        dataservice.getEmployeeByStatus(req.query.status).then((data) => {
+       dataservice.getEmployeeByStatus(req.query.status).then((data) => {
           res.render("employees",{employees: data});
         }).catch((err) => {
           res.render( {message: "no results"});
@@ -153,7 +154,7 @@ app.get("/images", function(req,res){
   
   app.get('/employee/:value', (req,res) => {
     dataservice.getEmployeeByNum(req.params.value).then((data) => {
-      res.render("employee",{employee: data});
+      res.render("employee",{employee: data[0]});
     }).catch((err) => {
       res.render("employee", {message: "no results"});
     })
