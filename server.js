@@ -121,7 +121,7 @@ app.get("/images", function(req,res){
 
   // Employees 
   app.get("/employees", (req, res) => {
-    comnsole.log("req.query.status")
+    console.log("req.query.status")
     if (req.query.status) {
        dataservice.getEmployeeByStatus(req.query.status).then((data) => {
           res.render("employees",{employees: data});
