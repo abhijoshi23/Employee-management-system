@@ -1,10 +1,10 @@
 /*********************************************************************************
-* WEB322 – Assignment 04
+* WEB322 – Assignment 05
 * I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part 
 * of this assignment has been copied manually or electronically from any other source 
 * (including 3rd party web sites) or distributed to other students.
 * 
-* Name: _Abhi Vishalkumar Joshi_________ Student ID: _146463203______ Date: _6/3/2022___________
+* Name: _Abhi Vishalkumar Joshi_________ Student ID: _146463203______ Date: 27/3/2022___________
 *
 * Online (Heroku) Link: https://fast-river-50640.herokuapp.com
 *
@@ -111,11 +111,6 @@ app.get("/images", function(req,res){
   });
 
   
-  app.get("/departments", function(req,res){
-    dataservice.getDepartments()
-    .then(data => res.render("departments", { departments: data }))
-    .catch(err => res.status(404).send('departments not found'))
-  });
 
   // Employees 
   app.get("/employees", (req, res) => {
@@ -217,6 +212,13 @@ app.post('/employees/add', (req,res) => {
    });
 
 // Departments
+
+app.get("/departments", (req, res) => {
+  dataservice.getDepartments()
+  .then(data => res.render("departments", { departments: data }))
+  .catch(err => res.status(404).send('departments not found'))
+});
+
 app.get("/departments/add", (req,res) => {
     res.render(path.join(__dirname + "/views/addDepartment.hbs"));
 });

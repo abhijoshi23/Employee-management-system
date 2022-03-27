@@ -131,9 +131,9 @@ module.exports.getDepartments = (() => {
 
 module.exports.addEmployee = (employeeData) => {
   return new Promise((resolve,reject) => {
-    employeeData.isManager = employeeData.isManager ? true : false;
-    for (var i in employeeData) {
-        if (employeeData[i] == "") { employeeData[i] = null; }
+    employeeData.isManager = Employee.isManager ? true : false;
+    for (var i in Employee) {
+        if (Employee[i] == "") { Employee[i] = null; }
     }
 
     Employee.create(employeeData)
