@@ -54,12 +54,17 @@ module.exports.initialize = (() =>{
 
 module.exports.getAllEmployees = (() => {
   return new Promise(function (resolve, reject) {
-    sequelize.sync()
-    .then(resolve(Employee.findAll()))
-    .catch(reject('no results returned'));
-   });
+    Employee.findAll().then((data) => {
+      const d = data.map((e) => {
+        return e.dataValues;
+      })
+      resolve(d);
+    })
+      .catch((err) =>
+        reject("no results returned" + err)
+         );
   });
-
+});
 module.exports.getEmployeeByStatus = (status) => {
   return new Promise(function (resolve, reject) {
     Employee.findAll({
@@ -122,18 +127,25 @@ module.exports.getManagers = (() => {
 
 module.exports.getDepartments = (() => {
   return new Promise((resolve, reject) => {
-    Department.findAll()
-    .then(data => { resolve(data); })
-    .catch(err => { reject(err); })
-}) 
+    Department.findAll().then((data) => {
+      const temp = data.map((e) => {
+        return e.dataValues;
+      })
+      resolve(temp);
+    }
+    )
+      .catch((err) =>
+        reject("no results returned" + err)
+      )
   });
+}) 
 
 
 module.exports.addEmployee = (employeeData) => {
   return new Promise((resolve,reject) => {
     employeeData.isManager = Employee.isManager ? true : false;
-    for (var i in Employee) {
-        if (Employee[i] == "") { Employee[i] = null; }
+    for (var i in employeeData) {
+        if (employeeData[i] == "") { employeeData[i] = null; }
     }
 
     Employee.create(employeeData)

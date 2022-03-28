@@ -6,7 +6,7 @@
 * 
 * Name: _Abhi Vishalkumar Joshi_________ Student ID: _146463203______ Date: 27/3/2022___________
 *
-* Online (Heroku) Link: https://fast-river-50640.herokuapp.com
+* Online (Heroku) Link: https://guarded-peak-51641.herokuapp.com/
 *
 ********************************************************************************/ 
 var express = require("express");
@@ -131,8 +131,16 @@ app.get("/images", function(req,res){
   }
   else {
       dataservice.getAllEmployees()
-      .then(data => res.render("employees", { employees: data }))
-      .catch(err => res.status(404).send('no results'))
+      .then((data) => {
+        console.log(data);
+        if (data.length > 0) {
+          res.render("employees", { employees: data })
+        } else {
+          res.render("employees", {message : "no result"})
+        }
+        
+      })
+      .catch(err => res.render("employees", {message : err}))
   }
   });
   
