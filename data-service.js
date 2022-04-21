@@ -108,7 +108,13 @@ module.exports.getEmployeeByStatus = (status) => {
               employeeNum:value
           }
       })
-      .then(data => resolve(data))
+      .then((data) => {
+        console.log(data);
+        const temp = data.map((e) => {
+          return e.dataValues;
+        })
+        resolve(temp);
+      })
       .catch('no results returned')
      });
     }
@@ -166,15 +172,25 @@ module.exports.addEmployee = (employeeData) => {
     })
 };
 
-exports.getDepartmentById = id => {
+module.exports.getDepartmentById = id => {
   return new Promise((resolve,reject) => {
       Department.findAll({ 
           where: {
               departmentId: id
           }
       })
-      .then(resolve(Department.findAll({ where: { departmentId: id }})))
-      .catch(reject('no results returned'))
+      .then((data) => {
+        const departData = data.map((emp) => {
+          return emp.dataValues;
+        })
+        if (departData[0].departmentId != 0) {
+          resolve(departData);
+        }
+      })
+      .catch((err) => {
+
+        reject('no results returned' + err)}
+        )
   })
 };
 
